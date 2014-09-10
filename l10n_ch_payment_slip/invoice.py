@@ -23,6 +23,9 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp.tools import mod10r
 from openerp.tools.translate import _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class AccountMoveLine(Model):
 
@@ -124,12 +127,13 @@ class AccountInvoice(Model):
             invoice_number = self._compile_get_ref.sub('', invoice.number)
         return mod10r(res + invoice_number.rjust(26 - len(res), '0'))
 
-    def get_bvr_ref(self, cursor, uid, inv_id, context=None):
+    def get_bvr_ref(self, cursor, uid, ids, context=None):
         """Retrieve ESR/BVR reference form invoice in order to print it
 
         Returns False when no BVR reference should be generated.  No
         reference is generated when the invoice is not a BVR invoice.
         """
+        inv_id = ids[0]
         if isinstance(inv_id, (list, tuple)):
             assert len(inv_id) == 1, "1 ID expected, got %s" % inv_id
             inv_id = inv_id[0]
