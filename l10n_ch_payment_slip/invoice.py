@@ -23,9 +23,6 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp.tools import mod10r
 from openerp.tools.translate import _
-import logging
-
-_logger = logging.getLogger(__name__)
 
 class AccountMoveLine(Model):
 
