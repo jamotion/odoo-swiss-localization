@@ -173,7 +173,7 @@ class AccountInvoice(Model):
         field of the invoice.
 
         """
-        res = super(AccountInvoice, self).action_number(cr, uid, ids, context=context)
+        res = super(AccountInvoice, self).action_number(cr, uid, ids)
         move_line_obj = self.pool.get('account.move.line')
 
         for inv in self.browse(cr, uid, ids, context=context):
