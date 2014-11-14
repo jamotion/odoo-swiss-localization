@@ -23,6 +23,9 @@ from openerp.osv.orm import Model
 from openerp.osv import fields
 from openerp.tools import mod10r
 from openerp.tools.translate import _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class AccountMoveLine(Model):
 
@@ -173,7 +176,7 @@ class AccountInvoice(Model):
         field of the invoice.
 
         """
-        res = super(AccountInvoice, self).action_number(cr, uid, ids)
+        res = super(AccountInvoice, self).action_number(cr, uid, ids, context=context)
         move_line_obj = self.pool.get('account.move.line')
 
         for inv in self.browse(cr, uid, ids, context=context):
