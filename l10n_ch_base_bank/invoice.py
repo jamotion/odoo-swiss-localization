@@ -33,8 +33,8 @@ class AccountInvoice(Model):
         #context not define in signature of function in account module
         #context = {}
         res = super(AccountInvoice, self).onchange_partner_id(cursor, uid, ids, invoice_type, partner_id,
-                                                              date_invoice=False, payment_term=False,
-                                                              partner_bank_id=False, company_id=False)
+                                                              date_invoice=date_invoice, payment_term=payment_term,
+                                                              partner_bank_id=partner_bank_id, company_id=company_id)
         bank_id = False
         if partner_id:
             if invoice_type in ('in_invoice', 'in_refund'):
